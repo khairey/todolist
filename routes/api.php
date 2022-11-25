@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Route::post('/task', [itemController::class, 'task']);
 Route::get('/items', [itemController::class, 'index']);
 Route::prefix('/item')->group(function () {
     Route::post('/store', [itemController::class, 'store']);

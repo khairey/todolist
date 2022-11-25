@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\item;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
 
 class itemController extends Controller
 {
@@ -102,4 +105,34 @@ class itemController extends Controller
 
         return 'Item Not Found';
     }
+
+
+
+    // public function task(Request $request)
+    // {
+    //     $array = array();
+    //     //getting all data
+    //     for ($i = 1; $i <= 10; $i++) {
+    //         $response = Http::get('https://jsonmock.hackerrank.com/api/medical_records?page=' . $i);
+    //         foreach (collect($response->json()['data']) as $data) {
+    //             array_push($array, $data);
+    //         }
+    //     }
+    //     //filter data
+    //     $filtered = collect($array);
+    //     $filtered = $filtered->where('doctor.name', $request->item['doctorName']);
+    //     $filtered = $filtered->where('diagnosis.id', $request->item['diagnosisId']);
+    //     // get temp array
+    //     $dist  = array_column(
+    //         array_column($filtered->values()->all(), 'vitals'),
+    //         'bodyTemperature', 
+    //     );
+    //     //get min and max
+    //     $max= floor(max($dist));
+    //     $min= floor(min($dist));
+
+    //     return array('min'=>$min,'max'=>$max);
+    // }
+
+
 }
