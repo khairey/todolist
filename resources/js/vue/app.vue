@@ -2,9 +2,9 @@
     <div class="todoListContainer">
         <div class="heading">
             <h2 id="title"> TODO List</h2>
-            <add-item-form />
+            <add-item-form v-on:reloadList="getList()" />
         </div>
-        <list-view />
+        <list-view :items="items" v-on:reloadList="getList()"/>
     </div>
 </template>
 
@@ -17,20 +17,42 @@ export default {
         addItemForm,
         listView,
         listItem
+    },
+    data: function () {
+        return {
+            items: []
+        }
+    },
+    methods:
+    {
+        getList() {
+            axios.get('api/items')
+            .then(response => {
+                this.items = response.data
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        }
+    },
+    created(){
+        this.getList();
     }
 }
 </script>
 
 <style scoped>
-.todoListContainer{
+.todoListContainer {
     width: 350px;
     margin: auto;
 }
-.heading{
+
+.heading {
     background: #e6e6e6;
     padding: 10px;
 }
-#title{
+
+#title {
     text-align: center;
 }
 </style>
